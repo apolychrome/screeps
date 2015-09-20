@@ -1,0 +1,24 @@
+/*
+ * Module code goes here. Use 'module.exports' to export things:
+ * module.exports = 'a thing';
+ *
+ * You can import it from another modules like this:
+ * var mod = require('builder'); // -> 'a thing'
+ */
+ module.exports=function(creep)
+ {
+ 	if(creep.carry.energy ==0) {
+			creep.moveTo(Game.spawns.Spawn1);
+			Game.spawns.Spawn1.transferEnergy(creep);
+		}
+		else 
+		{
+			var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+			var i;
+			for(i=targets.length;i>0;i=i-1) {
+			    
+				creep.moveTo(targets[i-1]);
+				creep.build(targets[i-1]);
+			}
+		}
+ }
